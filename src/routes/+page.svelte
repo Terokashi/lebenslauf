@@ -2,9 +2,13 @@
 	import Timeline from '$lib/components/Timeline.svelte';
 	import SkillBadge from '$lib/components/SkillBadge.svelte';
 	import ProjectCard from '$lib/components/ProjectCard.svelte';
-	import { type Skill } from '$lib/types';
-	import { type Project } from '$lib/types';
+	// import { type Skill } from '$lib/types';
+	// import { type Project } from '$lib/types';
 
+	import type {PageData} from './$types';
+	let { data }: {data: PageData} = $props();
+
+	/*
 	const werdegang = [
 		{
 			id: 0,
@@ -35,6 +39,7 @@
 			demoUrl: 'https://helper.example.com'
 		}
 	];
+	*/
 </script>
 
 <div class="page">
@@ -55,17 +60,17 @@
 
   <section id="werdegang">
     <h2>Erfahrungen</h2>
-    <Timeline entries={werdegang} />
+    <Timeline entries={data.entries} />
   </section>
 
   <section id="skills">
     <h2>Meine skills</h2>
-    <SkillBadge skills={gelerntes} />
+    <SkillBadge skills={data.skills} />
   </section>
 
   <section id="projects">
     <h2>Projekte</h2>
-    <ProjectCard projects={projekte} />
+    <ProjectCard projects={data.projects} />
   </section>
 </div>
 
