@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="text-scale" content="scale" />
+		%sveltekit.head%
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents">%sveltekit.body%</div>
+	</body>
+</html>
+
+<style>
+  :root {
+    --bg: #fafafa;
+    --surface: #fff;
+    --text: #111827;
+    --muted: #6b7280;
+    --accent: #2563eb;
+    --border: #e5e7eb;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+/* print layout */
+@media print {
+  /* --- Global --- */
+  /*
+  :root {
+    --bg: #fff;
+    --text: #000;
+    --muted: #444;
+    --border: #999;
+    --accent: #333;
+  }
+  */
+
+  body {
+    margin: 0;
+    padding: 2rem 1.5rem;
+    font-size: 11pt;
+    line-height: 1.4;
+    color: var(--text);
+    background: #fff;
+  }
+
+  /* --- Verstecken --- */
+  nav,
+  .print-btn {
+    display: none !important;
+  }
+
+  /* --- Header kompakter --- */
+  header h1 {
+    font-size: 1.6rem;
+    margin-bottom: 0.25rem;
+  }
+  header p {
+    color: var(--muted);
+  }
+
+  /* --- Sections --- */
+  section {
+    break-inside: avoid-page;
+    page-break-inside: avoid;   /* ältere Browser */
+    margin-bottom: 1.5rem;
+  }
+  section h2 {
+    font-size: 1.1rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.3rem;
+    margin-bottom: 0.8rem;
+  }
+
+  /* --- Timeline --- */
+  .timeline li,
+  .timeline article {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    border-left-color: var(--border);
+  }
+
+  /* --- Skill-Badges / Tags --- */
+  .tag {
+    /* background: #fff !important; */
+    /* color: #000 !important; */
+    border: 1px solid #999;
+  }
+
+  /* --- Projekt-Cards --- */
+  article a,
+  section a {
+    color: #000;
+    text-decoration: none;
+  }
+
+  /* --- Footer (nur im Druck sichtbar) --- */
+  body::after {
+    content: "Lebenslauf · erstellt mit SvelteKit";
+    display: block;
+    margin-top: 2.5rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border);
+    font-size: 8pt;
+    color: #666;
+  }
+
+  /* --- Seitenränder (Browser-Druckdialog) --- */
+  @page {
+    margin: 1.5cm 2cm;
+    size: A4;
+  }
+}
+</style>
