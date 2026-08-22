@@ -4,7 +4,9 @@
 	"version": "0.0.1",
 	"type": "module",
 	"scripts": {
-		"dev": "vite dev",
+		"dev:sveltekit": "vite dev",
+		"dev": "bun run dev:sveltekit",
+		"dev:all": "concurrently \"bun run dev:sveltekit\" \"bun --cwd=server run start\"",
 		"build": "vite build",
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync || echo ''",
@@ -31,10 +33,14 @@
 		"svelte-check": "^4.6.0",
 		"typescript": "^6.0.3",
 		"typescript-eslint": "^8.60.1",
-		"vite": "^8.0.16"
+		"vite": "^8.0.16",
+		"concurrently": "^10.0.5"
 	},
 	"dependencies": {
+		"@hono/node-server": "^2.1.1",
 		"drizzle-orm": "^0.45.2",
+		"hono": "^4.13.3",
+		"https": "^1.0.0",
 		"postgres": "^3.4.9"
 	}
 }
