@@ -39,4 +39,11 @@ npm run build
 
 You can preview the production build with `npm run preview`.
 
+## Setup
+Needs a .env with:
+DATABASE_URL
+POSTGRES_USER
+POSTGRES_PASSWORD
+ADMIN_PASSWORD_HASH
+
 > To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
