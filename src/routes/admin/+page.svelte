@@ -45,6 +45,31 @@
     <button type="submit">Speichern</button>
 </form>
 
+<!-- add new project -->
+<form method="POST" action="?/addProject" use:enhance>
+    <label>
+        title
+        <input name='title'>
+    </label>
+    <label>
+        description
+        <input name='description'>
+    </label>
+    <label>
+        tags (separeted by comma)
+        <input name='tags'>
+    </label>
+    <label>
+        githubUrl
+        <input name='githubUrl'>
+    </label>
+    <label>
+        demoUrl
+        <input name='demoUrl'>
+    </label>
+    <button type="submit">Speichern</button>
+</form>
+
 <!-- show jobs and delete them -->
 <section>
     <h2>Einträge ({data.entries.length})</h2>
@@ -71,6 +96,22 @@
             <span>{skill.level}</span>
             <form method="POST" action="?/deleteSkill" use:enhance>
                 <input type="hidden" name="id" value={skill.id}>
+                <button type="submit">x</button>
+            </form>
+        </div>
+    {/each}
+</section>
+
+<!-- show projects and delete them -->
+<section>
+    <h2>projects {data.projects.length}</h2>
+
+    {#each data.projects as project (project.id)}
+        <div class="row">
+            <strong>{project.title}</strong>
+            <span>{project.description}</span>
+                        <form method="POST" action="?/deleteSkill" use:enhance>
+                <input type="hidden" name="id" value={project.id}>
                 <button type="submit">x</button>
             </form>
         </div>

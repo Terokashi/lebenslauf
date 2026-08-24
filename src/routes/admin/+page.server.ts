@@ -1,7 +1,7 @@
 import { redirect } from '@sveltejs/kit';
 import type { Actions } from './$types';
 import { db } from '$lib/db/index';
-import { contactFormEntries, entries, skills } from '$lib/db/schema';
+import { contactFormEntries, entries, skills, projects } from '$lib/db/schema';
 import { eq } from 'drizzle-orm';
 
 // connection to db to add and delete skills, entries and contacts
@@ -28,6 +28,21 @@ export const actions: Actions = {
         redirect(303, '/admin');
     },
 
+    addProject: async ({ request }) =>{
+        const data = await request.formData();
+        const tagsString = data.get('tags') as string;
+
+        const tags = tagsString.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0);
+
+        await db.insert(projects).values({
+            title: data.get('title') as string,
+            description: data.get('description') as string,
+            tags,
+            githubUrl: data.get('githubUrl') as string || null,
+            demoUrl: data.get('demoUrl') as string | null
+        });
+    },
+
     deleteEntry: async ({ request }) =>{
         const data = await request.formData();
         const id = Number(data.get('id'));
@@ -39,6 +54,13 @@ export const actions: Actions = {
         const data = await request.formData();
         const id = Number(data.get('id'));
         await db.delete(skills).where(eq(skills.id, id));
+        redirect(303, '/admin');
+    },
+
+    deleteProject: async ({ request }) =>{
+        const data = await request.formData();
+        const id = Number(data.get('id'));
+        await db.delete(projects).where(eq(projects.id, id));
         redirect(303, '/admin');
     },
 
