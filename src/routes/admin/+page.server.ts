@@ -6,7 +6,7 @@ import { eq } from 'drizzle-orm';
 
 
 export const actions: Actions = {
-    'addEntry': async ({ request }: {request : Request}) =>{
+    'addEntry': async ({ request }) =>{
         const data = await request.formData();
 
         await db.insert(entries).values({
@@ -17,7 +17,7 @@ export const actions: Actions = {
         redirect(303, '/admin');
     },
 
-    addSkill: async ({ request }: {request : Request}) =>{
+    addSkill: async ({ request }) =>{
         const data = await request.formData();
 
         await db.insert(skills).values({
@@ -28,14 +28,14 @@ export const actions: Actions = {
         redirect(303, '/admin');
     },
 
-    deleteEntry: async ({ request }: {request: Request}) =>{
+    deleteEntry: async ({ request }) =>{
         const data = await request.formData();
         const id = Number(data.get('id'));
         await db.delete(entries).where(eq(entries.id, id));
         redirect(303, '/admin');
     },
 
-    deleteSkill: async ({ request }: {request: Request}) =>{
+    deleteSkill: async ({ request }) =>{
         const data = await request.formData();
         const id = Number(data.get('id'));
         await db.delete(skills).where(eq(skills.id, id));
