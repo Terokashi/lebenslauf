@@ -8,8 +8,7 @@
 	let { entries }: Props = $props();
 </script>
 
-<!-- HTML hier -->
-
+<!-- constructs timeline -->
 <ul class="timeline">
 	{#each entries as entry (entry.id)}
 		<li>

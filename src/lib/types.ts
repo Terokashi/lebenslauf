@@ -20,3 +20,9 @@ export interface Project {
     githubUrl?: string | null;
     demoUrl?: string | null;
 }
+
+export interface ContactForm {
+    id: number;
+    name: string;
+    email: string;
+}

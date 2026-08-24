@@ -1,4 +1,4 @@
-import { pgTable, serial, text, pgEnum, timestamp } from 'drizzle-orm/pg-core';
+import { pgTable, serial, text, pgEnum } from 'drizzle-orm/pg-core';
 
 export const entries = pgTable('entries', {
   id:           serial('id').primaryKey(),
@@ -28,6 +28,4 @@ export const contactFormEntries = pgTable('contact_form_entries', {
   id: serial('id').primaryKey(),
   name: text('name').notNull(),
   email: text('email').notNull(),
-  message: text('message').notNull(),
-  createdAt: timestamp('created_at').defaultNow(),
 });

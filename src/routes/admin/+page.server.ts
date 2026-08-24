@@ -1,12 +1,12 @@
 import { redirect } from '@sveltejs/kit';
 import type { Actions } from './$types';
 import { db } from '$lib/db/index';
-import { entries, skills } from '$lib/db/schema';
+import { contactFormEntries, entries, skills } from '$lib/db/schema';
 import { eq } from 'drizzle-orm';
 
-
+// connection to db to add and delete skills, entries and contacts
 export const actions: Actions = {
-    'addEntry': async ({ request }) =>{
+    addEntry: async ({ request }) =>{
         const data = await request.formData();
 
         await db.insert(entries).values({
@@ -41,4 +41,10 @@ export const actions: Actions = {
         await db.delete(skills).where(eq(skills.id, id));
         redirect(303, '/admin');
     },
+
+    deleteContact: async ({ request }) =>{
+        const data = await request.formData();
+        const id = Number(data.get('id'));
+        await db.delete(contactFormEntries).where(eq(contactFormEntries.id, id));
+    }
 };

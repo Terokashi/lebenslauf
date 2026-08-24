@@ -1,3 +1,4 @@
+<!-- simple login page for admin dashboard -->
 <script lang="ts">
     import {enhance} from '$app/forms';
 </script>

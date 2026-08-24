@@ -14,10 +14,9 @@
 		strong: '#10b981' // grün
 	};
 
-	// TODO $state für "open?"
 	let openIds = new SvelteSet<number>();
 
-	// TODO: Funktion zum toggle
+	// unfolds skill to show short description
 	function toggle(id: number) {
 		if (openIds.has(id)) {
 			openIds.delete(id);
@@ -27,6 +26,7 @@
 	}
 </script>
 
+<!-- construct skill list -->
 <div class="skills">
 	{#each skills as skill (skill.id)}
 		<div class="skill-item">

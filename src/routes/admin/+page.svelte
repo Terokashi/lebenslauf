@@ -1,9 +1,13 @@
 <script lang="ts">
-    import type {PageData} from './$types';
+    // enable form to work with ts instead of js exclusive
     import {enhance} from '$app/forms';
+    // import types for displaying data
+    import type {PageData} from './$types';
+    
     let { data }: {data: PageData} = $props();
 </script>
 
+<!-- create new job -->
 <form method="POST" action="?/addEntry" use:enhance>
     <label>
         zeitraum
@@ -20,6 +24,7 @@
     <button type="submit">Speichern</button>
 </form>
 
+<!-- add new skill -->
 <form method="POST" action="?/addSkill" use:enhance>
     <label>
         name
@@ -40,6 +45,7 @@
     <button type="submit">Speichern</button>
 </form>
 
+<!-- show jobs and delete them -->
 <section>
     <h2>Einträge ({data.entries.length})</h2>
 
@@ -55,6 +61,7 @@
     {/each}
 </section>
 
+<!-- show skills and delete them -->
 <section>
     <h2>skills {data.skills.length}</h2>
 
@@ -64,6 +71,22 @@
             <span>{skill.level}</span>
             <form method="POST" action="?/deleteSkill" use:enhance>
                 <input type="hidden" name="id" value={skill.id}>
+                <button type="submit">x</button>
+            </form>
+        </div>
+    {/each}
+</section>
+
+<!-- shows contacts and delete them -->
+<section>
+    <h2>contacts {data.contacts.length}</h2>
+
+    {#each data.contacts as contact (contact.id)}
+        <div class="row">
+            <strong>{contact.name}</strong>
+            <span>{contact.email}</span>
+            <form method="POST" action="?/deleteContact" use:enhance>
+                <input type="hidden" name="id" value={contact.id}>
                 <button type="submit">x</button>
             </form>
         </div>
