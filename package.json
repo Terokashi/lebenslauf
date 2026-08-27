@@ -6,7 +6,7 @@
 	"scripts": {
 		"dev:sveltekit": "vite dev",
 		"dev": "bun run dev:sveltekit",
-		"dev:all": "concurrently \"bun run dev:sveltekit\" \"bun --cwd=server run start\"",
+		"dev:all": "concurrently \"bun run --env-file=./.env dev:sveltekit\" \"bun --cwd=server run start\"",
 		"build": "vite build",
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync || echo ''",
@@ -38,11 +38,13 @@
 	},
 	"dependencies": {
 		"@hono/node-server": "^2.1.1",
+		"@tailwindcss/vite": "^4.3.3",
 		"@types/bcrypt": "^6.0.0",
 		"bcrypt": "^6.0.0",
 		"drizzle-orm": "^0.45.2",
 		"hono": "^4.13.3",
 		"https": "^1.0.0",
-		"postgres": "^3.4.9"
+		"postgres": "^3.4.9",
+		"tailwindcss": "^4.3.3"
 	}
 }

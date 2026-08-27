@@ -1,8 +1,12 @@
 import { drizzle } from 'drizzle-orm/postgres-js';
 import postgres from 'postgres';
 import * as schema from './schema';
-import { env } from '$env/dynamic/private';
+import process from 'node:process';
 
-const client = postgres(env.DATABASE_URL);
+if(!process.env.DATABASE_URL || typeof process.env.DATABASE_URL !== "string") {
+    throw new Error("No database url set");
+}
+
+const client = postgres(process.env.DATABASE_URL);
 
 export const db = drizzle(client, { schema });
